@@ -275,7 +275,7 @@
         <div class="container">
             <h2>Secure Your Exclusive Experience</h2>
             <p>Limited availability ensures the intimate nature of these encounters</p>
-            <a href="" class="btn">Express Interest Now</a>
+            <a href="#top" class="btn">Express Interest Now</a>
         </div>
     </section>
 
@@ -291,27 +291,18 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                if (this.getAttribute('href') === '#top') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
-
-        // Simple form handling
-        document.querySelector('.btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            const email = prompt('Please enter your email address to express interest:');
-            if (email && validateEmail(email)) {
-                alert('Thank you for your interest. Our management team will contact you shortly.');
-            } else if (email) {
-                alert('Please enter a valid email address.');
-            }
-        });
-
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
 
         // Parallax effect for hero section
         window.addEventListener('scroll', function() {
